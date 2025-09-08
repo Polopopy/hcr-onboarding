@@ -12,12 +12,16 @@ def dog_walk():
     
     with viewer.launch_passive(model, data) as v:
         while v.is_running():
-            data.ctrl[2] = 10 * np.sin(t * 0.1)
+            # data.ctrl[2] = 10 * np.sin(t)
+            # data.ctrl[6] = 10 * np.sin(t)
+            # data.ctrl[10] = 10 * np.sin(t)
+            
             
             mj.mj_step(model, data)
             v.sync()
             
             t += dt
+            time.sleep(dt)
 
 if __name__ == "__main__":
     dog_walk()
