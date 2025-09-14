@@ -22,29 +22,29 @@ ACT_TO_JOINT = {
 }
 
 ACTUATOR_CTRL_IDX = {
-    "fl_hip_motor":       0, "fl_upper_leg_motor": 1, "fl_knee_motor": 2, "fl_ankle_motor": 3,
-    "fr_hip_motor":       4, "fr_upper_leg_motor": 5, "fr_knee_motor": 6, "fr_ankle_motor": 7,
-    "bl_hip_motor":       8, "bl_upper_leg_motor": 9, "bl_knee_motor": 10, "bl_ankle_motor": 11,
-    "br_hip_motor":      12, "br_upper_leg_motor": 13, "br_knee_motor": 14, "br_ankle_motor": 15,
+    "fl_hip_motor": 0, "fl_upper_leg_motor": 1, "fl_knee_motor": 2, "fl_ankle_motor": 3,
+    "fr_hip_motor": 4, "fr_upper_leg_motor": 5, "fr_knee_motor": 6, "fr_ankle_motor": 7,
+    "bl_hip_motor": 8, "bl_upper_leg_motor": 9, "bl_knee_motor": 10, "bl_ankle_motor": 11,
+    "br_hip_motor": 12, "br_upper_leg_motor": 13, "br_knee_motor": 14, "br_ankle_motor": 15,
 }
 
-def angle_pd(data, qpos_idx, qvel_idx, q_des, kp=8.0, kd=0.2):
+def angle_pd(data, qpos_idx, qvel_idx, q_des, kp=3.0, kd=0.2):
     q  = data.qpos[qpos_idx]
     qd = data.qvel[qvel_idx]
     return kp*(q_des - q) - kd*qd
 
 LEGS    = ["fl","fr","bl","br"]
 OFFSETS = {"fl":0.0, "br":0.0, "fr":0.5, "bl":0.5}
-T_GAIT  = 0.7
-DUTY    = 0.6
+T_GAIT  = 0.8
+DUTY    = 0.7
 
 BASE_UPPER = -1.0
-BASE_KNEE  = 2.0
+BASE_KNEE  = 1.6
 
 HIP_FWD = +0.25
 HIP_BCK = -0.25
-UPPER_SW = +0.40
-KNEE_SW  = -0.60
+UPPER_SW = +1.3
+KNEE_SW  = -0.8
 
 def leg_targets(local_phase):
     if local_phase < DUTY:
