@@ -3,7 +3,6 @@ import mujoco as mj
 import numpy as np
 from mujoco import viewer
 
-# --- Only control UPPER and KNEE actuators ---
 ACT_TO_JOINT = {
     "fl_upper_leg_motor": "fl_upper_pitch",
     "fl_knee_motor":      "fl_knee",
@@ -18,7 +17,6 @@ ACT_TO_JOINT = {
     "br_knee_motor":      "br_knee",
 }
 
-# Keep your actuator index table; we’ll only write to the keys above.
 ACTUATOR_CTRL_IDX = {
     "fl_hip_motor": 0, "fl_upper_leg_motor": 1, "fl_knee_motor": 2, "fl_ankle_motor": 3,
     "fr_hip_motor": 4, "fr_upper_leg_motor": 5, "fr_knee_motor": 6, "fr_ankle_motor": 7,
@@ -33,11 +31,11 @@ def angle_pd(data, qpos_idx, qvel_idx, q_des, kp=5.0, kd=0.2):
 
 LEGS    = ["fl","fr","bl","br"]
 OFFSETS = {"bl":0.0, "fr":0.0, "fl":0.5, "br":0.5}
-T_GAIT  = 0.45
+T_GAIT  = 0.35
 
-POSE_A = (-1.1, 2.65)
+POSE_A = (-1.05, 2.65)
 POSE_B = (-1.65, 1.5)
-POSE_C = (-1.65, 3)
+POSE_C = (-1.65, 3.1)
 
 PHASES = (0.7, 0.1, 0.2)
 
