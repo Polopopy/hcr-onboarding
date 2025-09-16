@@ -11,10 +11,10 @@
 
   <worldbody>
     <!-- Ground -->
-    <geom name="ground" type="plane" size="10 10 0.1" rgba="0.8 0.8 0.8 1"/>
+    <geom name="ground" type="plane" size="30 30 0.1" rgba="0.8 0.8 0.8 1"/>
 
     <!-- Torso -->
-    <body name="torso" pos="0 0 0.25">
+    <body name="torso" pos="0 0 0.23">
       <freejoint name="torso_free"/>
       <geom name="torso_geom" type="box" size="0.2 .03 .03" pos="0 0 0"/>
 

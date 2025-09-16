@@ -30,6 +30,8 @@ def angle_pd(data, qpos_idx, qvel_idx, q_des, kp=5.0, kd=0.2):
     return kp*(q_des - q) - kd*qd
 
 LEGS    = ["fl","fr","bl","br"]
+
+# Walking
 OFFSETS = {"bl":0.0, "fr":0.0, "fl":0.5, "br":0.5}
 T_GAIT  = 0.35
 
@@ -38,6 +40,16 @@ POSE_B = (-1.65, 1.5)
 POSE_C = (-1.65, 3.1)
 
 PHASES = (0.7, 0.1, 0.2)
+
+# Running
+# OFFSETS = {"bl":0.5, "fr":0.0, "fl":0.0, "br":0.5}
+# T_GAIT  = 0.5
+
+# POSE_A = (0.8, 0.4)
+# POSE_B = (-0.8, 2.6)
+# POSE_C = (-1.1, -0.1)
+
+# PHASES = (0.5, 0.2, 0.3)
 
 def _lerp(a, b, t): return a + (b - a) * t
 def _blend(p0, p1, t): return (_lerp(p0[0], p1[0], t), _lerp(p0[1], p1[1], t))
@@ -69,6 +81,7 @@ def dog_walk():
         joint_addr[jname] = (int(model.jnt_qposadr[jid]), int(model.jnt_dofadr[jid]))
 
     phi = 0.0
+
     with mj.viewer.launch_passive(model, data) as v:
         while v.is_running():
             phi = (phi + dt / T_GAIT) % 1.0
